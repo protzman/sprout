@@ -1,22 +1,49 @@
 import React from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 
-const styles = {
-  card: {
-    maxWidth: 345
+import {
+  Container,
+  List,
+  ListItem
+} from '@material-ui/core'
+
+import CuisineTabs from '../src/components/CuisineTabs'
+import RecipieReviewCard from '../src/components/RecipeReviewCard'
+
+const useStyles = makeStyles((theme) => ({
+  topAppBar: {
+    backgroundColor: theme.palette.background.default
   },
-  media: {
-    height: 140
+  content: {
+    overflowY: 'scroll'
+  },
+  tabs: {
+    position: 'absolute',
+    top: 56,
+    bottom: 'auto',
+    left: 0,
+    right: 0
   }
-}
+}))
 
-function Overview(props) {
-  const { classes } = props
+export default function Overview(props) {
+  const classes = useStyles()
   return (
     <div>
-      overview page
+      <CuisineTabs className={classes.tabs} />
+      <Container className={classes.content}>
+        <List>
+          <ListItem>
+            <RecipieReviewCard />
+          </ListItem>
+          <ListItem>
+            <RecipieReviewCard />
+          </ListItem>
+          <ListItem>
+            <RecipieReviewCard />
+          </ListItem>
+        </List>
+      </Container>
     </div>
   )
 }
-
-export default withStyles(styles)(Overview)
